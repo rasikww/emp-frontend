@@ -1,0 +1,42 @@
+<div class="container m-5">
+
+    <h1 class="text-center mb-4 bg-info p-4 text-white fw-bolder">Add Employee</h1>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Enter First Name</span>
+        <input type="text" class="form-control" placeholder="First Name" aria-label="Username"
+            aria-describedby="basic-addon1" [(ngModel)]="employeeObj.firstName">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Enter Last Name</span>
+        <input type="text" class="form-control" placeholder="Last Name" aria-label="Username"
+            aria-describedby="basic-addon1" [(ngModel)]="employeeObj.lastName">
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="email" aria-label="Recipient's username"
+            aria-describedby="basic-addon2" [(ngModel)]="employeeObj.email">
+        <span class="input-group-text" id="basic-addon2">.com</span>
+    </div>
+    <div class="input-group mb-3">
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="employeeObj.departmentId">
+            <option selected>Department</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="employeeObj.roleId">
+            <option selected>Role</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+
+    <button type="button" class="btn btn-success" (click)="addEmployee()">Add Employee</button>
+
+
+</div>
