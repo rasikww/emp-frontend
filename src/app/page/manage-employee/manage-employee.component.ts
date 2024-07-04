@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { NavComponent } from '../../common/nav/nav.component';
 
 @Component({
   selector: 'app-manage-employee',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, CommonModule],
+  imports: [FormsModule, HttpClientModule, CommonModule, NavComponent],
   templateUrl: './manage-employee.component.html',
   styleUrl: './manage-employee.component.css',
 })
@@ -28,7 +30,12 @@ export class ManageEmployeeComponent {
         this.employeeObj
       )
       .subscribe((data) => {
-        console.log(data.toString);
+        //console.log(data.toString);
+        Swal.fire({
+          title: 'Employee Added',
+          text: '',
+          icon: 'success',
+        });
       });
   }
 }
