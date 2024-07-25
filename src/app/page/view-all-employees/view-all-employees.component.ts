@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -13,7 +17,9 @@ import { NavComponent } from '../../common/nav/nav.component';
   styleUrl: './view-all-employees.component.css',
 })
 export class ViewAllEmployeesComponent {
+  // public selectedEmployee = new Employee();
   public employeeList: any;
+
   constructor(private http: HttpClient) {
     this.loadAllEmployeeTable();
   }
@@ -71,5 +77,36 @@ export class ViewAllEmployeesComponent {
           });
         }
       });
+  }
+
+  public selectedEmployee: any = {
+    'id': null,
+    'firstName': null,
+    'lastName': null,
+    'email': null,
+    'departmentId': null,
+    'roleId': null,
+  };
+  
+  updateEmployee(employee: any) {
+    this.selectedEmployee = employee;
+    console.log(this.selectedEmployee);
+  }
+
+  saveUpdatedEmployee() {
+    this.http
+      .put(
+        'http://localhost:8080/emp-controller/update-employee',
+        this.selectedEmployee
+      )
+      .subscribe((res) => {
+        console.log('updated!');
+        this.closeModal();
+      });
+  }
+ 
+  closeModal() {
+    const close = document.getElementById('close');
+    close?.click();
   }
 }
